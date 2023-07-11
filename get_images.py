@@ -1,15 +1,13 @@
 import requests
-import pandas as pd
+import csv
 import os
-
-df = pd.read_csv('homes.csv')
-
 i = 0
-for id, row in df.iterrows():
-    # breakpoint()
-    if i > 12:
+with open('homes.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
         property_number = row['propertyNo']
         images = row['images']
+        print(property_number)
         try:
             all_images = images.split(',')
         except:
